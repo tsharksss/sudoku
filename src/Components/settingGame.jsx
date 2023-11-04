@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { setStep, creatTable } from '../logic/tableSlice'
+import { setRow, creatTable } from '../logic/tableSlice'
 
 export const SettingGame = ({ setLoading }) => {
     const dispatch = useDispatch()
@@ -8,16 +8,16 @@ export const SettingGame = ({ setLoading }) => {
         setLoading(true)
         let data = [], timeArray = []
         for (let i = 1; i <= Math.pow(size, size) * size; i++) {
-            const obj = { [i]: "" };
             if (i % Math.pow(size, 2) !== 0) {
-                timeArray.push(obj)
+                timeArray.push("")
             } else {
-                timeArray.push(obj)
+                timeArray.push("")
                 data.push(timeArray)
                 timeArray = []
             }
         }
-        dispatch(setStep(3))
+        console.log(data)
+        dispatch(setRow(size))
         dispatch(creatTable(data))
     }
 

@@ -4,7 +4,7 @@ import { defaultTableSize, group } from '../utils'
 
 const initialState = {
     table: defaultTableSize,
-    step: 3,
+    row: 3,
     showNumber: false
 }
 
@@ -12,8 +12,8 @@ export const tableSlice = createSlice({
     name: 'table',
     initialState,
     reducers: {
-        setStep: (state, action) => {
-            state.step = action.payload
+        setRow: (state, action) => {
+            state.row = action.payload
         },
         creatTable: (state, action) => {
             state.table = action.payload
@@ -28,6 +28,6 @@ export const tableSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { creatTable, showNumber, hideNumber, setStep } = tableSlice.actions
+export const { creatTable, showNumber, hideNumber, setRow } = tableSlice.actions
 
 export default tableSlice.reducer
