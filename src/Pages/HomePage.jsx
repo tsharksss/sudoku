@@ -1,31 +1,29 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import React, {useEffect} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import '../index.css'
-import { TableGame } from '../Components/tableGame'
-import { SettingGame } from '../Components/settingGame'
-import { ShowInputNumber } from '../Components/showInputNumber'
-import { GameButtons } from '../Components/gameButtons'
-import { defaultTableSize } from '../utils'
+import {TableGame} from '../Components/tableGame'
+import {SettingGame} from '../Components/settingGame'
+import {ShowInputNumber} from '../Components/showInputNumber'
+import {GameButtons} from '../Components/gameButtons'
+import {generateSudoku} from "../logic/tableSlice";
 
 export const HomePage = () => {
-
-    const { showNumber, table } = useSelector(state => state.table)
-
-    const [laoding, setLoading] = useState(false)
+    const dispatch = useDispatch()
+    const {showNumber} = useSelector(state => state.table)
 
     useEffect(() => {
-        setLoading(false)
-    }, [table])
+        dispatch(generateSudoku())
+    }, [])
 
     return (
         <div className='container'>
-            <h1 className='title'>Судоку</h1>
-            <SettingGame setLoading={setLoading} />
+            <h1 className='title'>Sudoku</h1>
+            <SettingGame/>
             <div className="wrapper_game">
-                {!laoding ? <TableGame /> : 'Загрузка...'}
+                <TableGame/>
                 <GameButtons/>
             </div>
-            {showNumber && <ShowInputNumber />}
+            {showNumber && <ShowInputNumber/>}
         </div>
     )
 }

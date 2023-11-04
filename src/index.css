@@ -64,11 +64,24 @@ html,
 
 .settings_wrapper {
   display: flex;
+  flex-direction: column;
   margin-top: 10px;
   width: 250px;
   margin-bottom: 15px;
-  justify-content: space-evenly;
   align-items: center;
+}
+
+.setting_wrapper_rows {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.setting_wrapper_level {
+  margin-top: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
 }
 
 .settings_wrapper button {
