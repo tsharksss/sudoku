@@ -1,38 +1,63 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, {useEffect, useState, useMemo} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import '../index.css'
-import { hideNumber } from '../logic/tableSlice'
+import {hideNumber, setNumber, validate} from '../logic/tableSlice'
+import {group} from "../utils";
 
 export const ShowInputNumber = () => {
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     const dispatch = useDispatch()
+    const [valid, setValid] = useState([])
+    const {tableInput, showNumber, table} = useSelector(state => state.table)
 
     const handleSelectedNumber = (number) => {
-        console.log(number)
+        dispatch(setNumber(number))
     }
+
+    const handleCreateNumbers = useMemo(() => {
+        const groupNumbers = group(numbers, 3)
+        const rows = []
+        for (let i = 0; i < groupNumbers.length; i++) {
+            const cells = []
+            for (let j = 0; j < groupNumbers[i].length; j++) {
+                cells.push(
+                    <td key={'td' + j + i}>
+                        <button
+                            className={valid.includes(groupNumbers[i][j]) ? "button_number" : "button_number disabled"}
+                            onClick={() => handleSelectedNumber(groupNumbers[i][j])}
+                            disabled={!valid.includes(groupNumbers[i][j])}>{groupNumbers[i][j]}
+                        </button>
+                    </td>
+                )
+            }
+            rows.push(<tr key={'tr' + i}>{cells}</tr>)
+        }
+        return rows
+    }, [valid])
+    const handleCheckEmptyNumber = () => {
+        setValid([])
+        for (let i = 0; i < numbers.length; i++) {
+            if (validate(table, tableInput.row, tableInput.col, numbers[i])) {
+                // console.log(numbers[i])
+                setValid(prev => [...prev, numbers[i]])
+            }
+        }
+    }
+
+    useEffect(() => {
+        handleCheckEmptyNumber()
+    }, [showNumber])
 
     return (
         <div className="modal">
             <div className='modal__header'>
                 <h3>Выберите число</h3>
-                <button onClick={() => dispatch(hideNumber())} className="close-modal"><span className="exit_dot">&times;</span></button>
+                <button onClick={() => dispatch(hideNumber())} className="close-modal"><span
+                    className="exit_dot">&times;</span></button>
             </div>
             <div className='number_wrapper'>
                 <table>
-                    <tr>
-                        <td><button className="button_number" onClick={() => handleSelectedNumber(1)}>1</button></td>
-                        <td><button className="button_number" onClick={() => handleSelectedNumber(2)}>2</button></td>
-                        <td><button className="button_number" onClick={() => handleSelectedNumber(3)}>3</button></td>
-                    </tr>
-                    <tr>
-                        <td><button className="button_number" onClick={() => handleSelectedNumber(4)}>4</button></td>
-                        <td><button className="button_number" onClick={() => handleSelectedNumber(5)}>5</button></td>
-                        <td><button className="button_number" onClick={() => handleSelectedNumber(6)}>6</button></td>
-                    </tr>
-                    <tr>
-                        <td><button className="button_number" onClick={() => handleSelectedNumber(7)}>7</button></td>
-                        <td><button className="button_number" onClick={() => handleSelectedNumber(8)}>8</button></td>
-                        <td><button className="button_number" onClick={() => handleSelectedNumber(9)}>9</button></td>
-                    </tr>
+                    {handleCreateNumbers}
                 </table>
             </div>
         </div>

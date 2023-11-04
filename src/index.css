@@ -1,230 +1,256 @@
 body,
 html,
 * {
-  padding: 0;
-  margin: 0;
-  position: relative;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    padding: 0;
+    margin: 0;
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .title {
-  margin-bottom: 10px;
-  text-decoration: underline;
+    margin-bottom: 10px;
+    text-decoration: underline;
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 10px 10px 51px 0px rgba(0, 0, 0, 0.39);
-  -webkit-box-shadow: 10px 10px 51px 0px rgba(0, 0, 0, 0.39);
-  -moz-box-shadow: 10px 10px 51px 0px rgba(0, 0, 0, 0.39);
-  margin: 1%;
-  background: white;
-  border-radius: 20px;
-  padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 10px 10px 51px 0px rgba(0, 0, 0, 0.39);
+    -webkit-box-shadow: 10px 10px 51px 0px rgba(0, 0, 0, 0.39);
+    -moz-box-shadow: 10px 10px 51px 0px rgba(0, 0, 0, 0.39);
+    margin: 1%;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
 }
 
 .wrapper_game {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .wrapper_buttons {
-  margin-left: 10px;
-  display: flex;
-  flex-direction: column;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .wrapper_buttons button {
-  border: none;
-  font-size: 1rem;
-  padding: 20px;
-  background-color: transparent;
-  border-radius: 5px;
-  margin-bottom: 15px;
-  box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.39);
+    border: none;
+    font-size: 1rem;
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.39);
 }
 
 .wrapper_buttons button:nth-child(4n) {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .wrapper_buttons button:hover {
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 0 50px 10px rgba(0, 0, 0, 0.39);
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 50px 10px rgba(0, 0, 0, 0.39);
 }
 
 .settings_wrapper {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-  width: 250px;
-  margin-bottom: 15px;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    width: 250px;
+    margin-bottom: 15px;
+    align-items: center;
 }
 
 .setting_wrapper_rows {
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
 }
 
 .setting_wrapper_level {
-  margin-top: 10px;
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
 }
 
 .settings_wrapper button {
-  padding: 15px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 10px;
+    padding: 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
 }
 
 .settings_wrapper button:hover {
-  cursor: pointer;
-  padding: 15px;
-  box-shadow: 0px 0px 40px 5px rgba(0, 0, 0, 0.39);
+    cursor: pointer;
+    padding: 15px;
+    box-shadow: 0px 0px 40px 5px rgba(0, 0, 0, 0.39);
 }
 
 .table_game {
-  margin-top: 5px;
-  border-collapse: collapse;
+    margin-top: 5px;
+    border-collapse: collapse;
 }
 
 .table_game td {
-  padding: 0;
-  margin: 0;
-  height: 40px;
-  width: 40px;
-  text-align: center;
-  vertical-align: center;
-  outline: none;
+    padding: 0;
+    margin: 0;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    vertical-align: center;
+    outline: none;
 }
 
 .wrapper button {
-  border-radius: 7px;
-  color: #e3dac9;
-  background-color: #9003fc;
-  padding: 0;
-  margin: 0;
-  border: 0;
-  height: 40px;
-  width: 40px;
-  text-align: center;
-  font-size: 24px;
-  width: 100%;
+    border-radius: 7px;
+    color: #e3dac9;
+    background-color: #9003fc;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.wrapper button.complete {
+    color: #c5d3e0;
+    background-color: #5b678a;
+}
+
+.wrapper button.done {
+    color: #fff;
+    background-color: #03a9f4;
+}
+
+.wrapper button.error {
+    color: #fff;
+    background-color: #f40303;
 }
 
 .wrapper button:hover {
-  border-radius: 7px;
-  color: #ebd086;
+    border-radius: 7px;
+    cursor: pointer;
+    color: #ebd086;
+}
+
+.wrapper_victory {
+    display: flex;
+    width: 200px;
+    flex-direction: column;
+}
+
+.wrapper_victory p {
+    font-size: 1.5rem;
+}
+
+.wrapper_victory button {
+    margin-top: 10px;
+    display: flex;
+    border-radius: 12px;
+    border: 0;
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper_victory button:hover {
+    border-radius: 7px;
+    cursor: pointer;
+    box-shadow: 0 0 40px 5px rgba(0, 0, 0, 0.39);
 }
 
 td:nth-child(3n) {
-  border-right: 10px solid white;
+    border-right: 10px solid white;
 }
 
 tr:nth-child(3n) {
-  border-bottom: 10px solid white;
+    border-bottom: 10px solid white;
 }
 
 .tab {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 
-}
-
-.last {
-  margin-top: 10px;
-  margin-left: 10px;
-  display: flex;
-  justify-content: left;
-  width: 400px;
-  height: 80px;
-  border-radius: 7px;
-}
-
-.table_game label {
-  color: #e3dac9;
-  margin-right: 10px;
-}
-
-.last input {
-  height: 21px;
-  width: 70px;
-  font-size: 16px;
-  border-radius: 5px;
-  vertical-align: top;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 .modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 250px;
-  background-color: white;
-  padding: 25px;
-  border-radius: 5px;
-  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
-  z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    background-color: white;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+    z-index: 10;
 }
 
 .modal__header {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
 }
 
 .close-modal {
-  font-size: 1.3rem;
-  color: #333;
-  cursor: pointer;
-  border: none;
-  background: none;
+    font-size: 1.3rem;
+    color: #333;
+    cursor: pointer;
+    border: none;
+    background: none;
 }
 
 .exit_dot {
-  height: 30px;
-  width: 30px;
-  border: 1px solid black;
-  border-radius: 50%;
-  display: inline-block;
+    height: 30px;
+    width: 30px;
+    border: 1px solid black;
+    border-radius: 50%;
+    display: inline-block;
 }
 
 .exit_dot:hover {
-  box-shadow: 0px 0px 40px 5px rgba(0, 0, 0, 0.39);
+    box-shadow: 0px 0px 40px 5px rgba(0, 0, 0, 0.39);
 }
 
 .button_number {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  color: #EF9595;
-  font-size: 25px;
-  border: none;
-  border-radius: 13px;
-  margin: 2px;
-  background-color: #FCF5ED;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    color: #EF9595;
+    font-size: 25px;
+    border: none;
+    border-radius: 13px;
+    margin: 2px;
+    background-color: #FCF5ED;
+}
+
+.button_number.disabled {
+    cursor: default;
+    background-color: gray;
+    color: lightgray;
 }

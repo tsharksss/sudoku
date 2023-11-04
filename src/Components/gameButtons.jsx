@@ -1,6 +1,7 @@
 import React from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {solutionSudoku, clearMyNumber, generateSudoku} from "../logic/tableSlice";
+import {areArraysEqual} from "../utils";
 
 export const GameButtons = () => {
     const dispatch = useDispatch()
@@ -21,9 +22,9 @@ export const GameButtons = () => {
 
     return (
         <div className='wrapper_buttons'>
-            <button onClick={() => handleClearMyNumber()} disabled={table === solutionTable}>Clear</button>
-            <button onClick={() => handleSolution()} disabled={table === solutionTable}>Solution</button>
-            <button onClick={() => handleNextGame()} disabled={table !== solutionTable}>Next</button>
+            <button onClick={() => handleClearMyNumber()} disabled={areArraysEqual(table, solutionTable)}>Clear</button>
+            <button onClick={() => handleSolution()} disabled={areArraysEqual(table, solutionTable)}>Solution</button>
+            <button onClick={() => handleNextGame()} disabled={!areArraysEqual(table, solutionTable)}>Next</button>
         </div>
     )
 }

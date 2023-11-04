@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {BOX_SIZE, defaultTableSize, GRID_SIZE} from '../utils'
+import {BOX_SIZE, defaultTableSize, GRID_SIZE, guid} from '../utils'
 
 export const generateTable = createAsyncThunk('table/generate', (size, {dispatch}) => {
     return generateNewEmptyTable(size)
@@ -43,7 +43,7 @@ const getRandomNumbers = () => {
     return numbers
 }
 
-const validate = (table, row, col, value) => {
+export const validate = (table, row, col, value) => {
     return validateColumn(table, row, col, value)
         && validateRow(table, row, col, value)
         && validateBox(table, row, col, value)
@@ -99,12 +99,21 @@ const removeCells = (table, level = initialState.level) => {
 }
 
 const initialState = {
+    guid: guid,
+    loading: false,
+    errorCount: 0,
     table: defaultTableSize,
     duplicateTable: defaultTableSize,
     solutionTable: defaultTableSize,
     row: 3,
     level: 'easy',
-    showNumber: false
+    showNumber: false,
+    showVictory: false,
+    setNumber: null,
+    tableInput: {
+        row: 0,
+        col: 0
+    }
 }
 
 export const tableSlice = createSlice({
@@ -117,7 +126,7 @@ export const tableSlice = createSlice({
     },
     reducers: {
         clearMyNumber: (state) => {
-            if (state.table !== state.solutionTable){
+            if (state.table !== state.solutionTable) {
                 state.table = state.duplicateTable
             } else {
                 return false
@@ -146,17 +155,48 @@ export const tableSlice = createSlice({
         creatTable: (state) => {
             state.table = generateSudoku(state.table)
         },
-        showNumber: (state) => {
+        showNumber: (state, action) => {
             state.showNumber = true
+            state.tableInput = action.payload
+        },
+        setNumber: (state, action) => {
+            state.setNumber = action.payload
+            if (state.solutionTable[state.tableInput.row][state.tableInput.col] !== action.payload) {
+                state.errorCount += 1
+            }
+            state.table[state.tableInput.row][state.tableInput.col] = action.payload
+            state.showNumber = false
         },
         hideNumber: (state) => {
             state.showNumber = false
+        },
+        showVictoryModal: (state) => {
+            state.showVictory = true
+        },
+        hideVictory: (state) => {
+            state.errorCount = 0
+            state.showVictory = false
+            state.table = generateNewEmptyTable(Math.pow(initialState.row, 2))
+            resolveSudoku(state.table)
+            state.solutionTable = state.table
+            state.table = removeCells(state.table)
+            state.duplicateTable = state.table
+        },
+        showLoading: (state) => {
+            state.loading = true
+        },
+        hideLoading: (state) => {
+            state.loading = false
         }
     },
 })
 
-// Action creators are generated for each case reducer function
 export const {
+    hideLoading,
+    showLoading,
+    hideVictory,
+    showVictoryModal,
+    setNumber,
     clearMyNumber,
     solutionSudoku,
     changeLevel,
