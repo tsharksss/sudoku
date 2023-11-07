@@ -1,10 +1,11 @@
-import React, {useEffect, useState, useMemo} from 'react'
+import React, {useEffect, useState, useMemo, useRef} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import '../index.css'
 import {hideNumber, setNumber, validate} from '../logic/tableSlice'
 import {group} from "../utils";
 
 export const ShowInputNumber = () => {
+    const modalRef = useRef();
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     const dispatch = useDispatch()
     const [valid, setValid] = useState([])
@@ -13,6 +14,24 @@ export const ShowInputNumber = () => {
     const handleSelectedNumber = (number) => {
         dispatch(setNumber(number))
     }
+
+    const handleOutsideClick = (event) => {
+        if (modalRef.current && !modalRef.current.contains(event.target)) {
+            dispatch(hideNumber())
+        }
+    };
+
+    useEffect(() => {
+        if (showNumber) {
+          document.addEventListener('mousedown', handleOutsideClick);
+        } else {
+          document.removeEventListener('mousedown', handleOutsideClick);
+        }
+    
+        return () => {
+          document.removeEventListener('mousedown', handleOutsideClick);
+        };
+      }, [showNumber, hideNumber])
 
     const handleCreateNumbers = useMemo(() => {
         const groupNumbers = group(numbers, 3)
@@ -49,7 +68,7 @@ export const ShowInputNumber = () => {
     }, [showNumber])
 
     return (
-        <div className="modal">
+        <div className="modal" ref={modalRef}>
             <div className='modal__header'>
                 <h3>Выберите число</h3>
                 <button onClick={() => dispatch(hideNumber())} className="close-modal"><span

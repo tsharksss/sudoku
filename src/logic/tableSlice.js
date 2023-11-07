@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {BOX_SIZE, defaultTableSize, GRID_SIZE, guid} from '../utils'
+import {areArraysEqual, BOX_SIZE, defaultTableSize, GRID_SIZE, guid} from '../utils'
 
 export const generateTable = createAsyncThunk('table/generate', (size, {dispatch}) => {
     return generateNewEmptyTable(size)
@@ -134,6 +134,9 @@ export const tableSlice = createSlice({
         },
         solutionSudoku: (state) => {
             state.table = state.solutionTable
+            if (areArraysEqual(state.table, state.solutionTable)) {
+                state.showVictory = true
+            }
         },
         changeLevel: (state, action) => {
             state.table = generateNewEmptyTable(Math.pow(initialState.row, 2))
@@ -141,6 +144,7 @@ export const tableSlice = createSlice({
             resolveSudoku(state.table)
             state.solutionTable = state.table
             state.table = removeCells(state.table, action.payload)
+            state.duplicateTable = state.table
         },
         generateSudoku: (state) => {
             state.table = generateNewEmptyTable(Math.pow(initialState.row, 2))
@@ -166,6 +170,9 @@ export const tableSlice = createSlice({
             }
             state.table[state.tableInput.row][state.tableInput.col] = action.payload
             state.showNumber = false
+            if (areArraysEqual(state.table, state.solutionTable)) {
+                state.showVictory = true
+            }
         },
         hideNumber: (state) => {
             state.showNumber = false
